@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="iw" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ניסוי</title>
+</head>
+<body>
+    <form>
+        <label for="password">סיסמה</label>
+        <input type="password" name="password" id="password" />
+        <br/>
+        <label for="confirmPassword">אימות סיסמה</label>
+        <input type="password" name="confirmPassword" id="confirmPassword" />
+        <br/>
+        <button type="submit">הרשמה</button>
+    </form>
+    <script>
+        let form = document.querySelector("form");
+        form.addEventListener("submit", (e) => {
+            e.preventDefault();
+            let password = document.getElementById("password").value;
+            let confirmPassword= document.getElementById("confirmPassword").value;
+            fetch('http://localhost:8080/new-password',
+            {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    userId: "5e83057858032e5ee05139ce",
+                    token: "45a7ee10d3512de0f2d2f0a2c092a54432b348ff9805bfcc76cfa0aaad046eee",
+                    password: password,
+                    confirmPassword: confirmPassword
+                })
+            })
+            .then(res => {
+                console.log(res.status);
+                return res.json();
+            }).then(jsonRes => {
+                console.log(jsonRes);
+            }).catch(err => {
+                console.error(err);
+            })
+        })
+    </script>
+</body>
+</html>

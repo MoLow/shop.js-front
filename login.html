@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="iw" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ניסוי</title>
+</head>
+<body>
+    <form>
+        <label for="email">כתובת אימייל</label>
+        <input type="email" name="email" id="email" />
+        <br/>
+        <label for="password">סיסמה</label>
+        <input type="password" name="password" id="password" />
+        <br/>
+        <button type="submit">הרשמה</button>
+    </form>
+    <script>
+        let form = document.querySelector("form");
+        form.addEventListener("submit", (e) => {
+            e.preventDefault();
+            let email = document.getElementById("email").value;
+            let password = document.getElementById("password").value;
+            fetch('http://localhost:8080/login',
+            {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    email: email,
+                    password: password
+                })
+            })
+            .then(res => {
+                console.log(res.status);
+                return res.json();
+            }).then(jsonRes => {
+                console.log(jsonRes);
+            }).catch(err => {
+                console.error(err);
+            })
+        })
+    </script>
+</body>
+</html>

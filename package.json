@@ -1,0 +1,20 @@
+{
+  "name": "shop.js-front",
+  "version": "0.1.0",
+  "description": "frontend of my shop",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "shop",
+    "frontend",
+    "tutorial"
+  ],
+  "author": "AtlowApps",
+  "license": "MIT",
+  "devDependencies": {
+    "webpack": "^4.42.1",
+    "webpack-cli": "^3.3.11"
+  }
+}
